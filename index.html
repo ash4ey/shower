@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>
+        {Title}{block:PostTitle} {text:Separator} {PostTitle}{/block:PostTitle}
+    </title>
+    
+    <meta name="color:Background" content="#f6f6f6"/>
+    
+    <meta name="color:Gradient top" content="#ffffff"/>
+    <meta name="color:Gradient bottom" content="#f01f54"/>
+    
+    <meta name="color:Header title link" content="#444444"/>
+    <meta name="color:Header text" content="#666666"/>
+    <meta name="color:Header links" content="#666666"/>
+    <meta name="color:Text" content="#444444"/>
+    <meta name="color:Link" content="#666666"/>
+    <meta name="color:Link hover" content="#888888"/>
+    <meta name="color:Date note tag text" content="#888888"/>
+    
+    <meta name="font:Font" content="Helvetica"/>
+    <meta name="text:Google font" content="Rubik"/>
+    
+    <meta name="select:Header font weight" content="900" title="900"/>
+    <meta name="select:Header font weight" content="700" title="700"/>
+    <meta name="select:Header font weight" content="400" title="400"/>
+    <meta name="select:Header font weight" content="300" title="300"/>
+    
+    <meta name="select:Header font style" content="normal" title="normal"/>
+    <meta name="select:Header font style" content="italic" title="italic"/>
+    
+    <meta name="select:Body font weight" content="400" title="400"/>
+    <meta name="select:Body font weight" content="300" title="300"/>
+    
+    <meta name="select:Blockquote font style" content="normal" title="normal"/>
+    <meta name="select:Blockquote font style" content="italic" title="italic"/>
+    
+    <meta name="if:Background gradient" content="1"/>
+    <meta name="if:Use Google font" content="1"/>
+    
+    <meta name="text:Max page width" content="700px"/>
+    
+    <meta name="if:Show Archive" content="1"/>
+    <meta name="if:Show RSS" content="0"/>
+    <meta name="if:Use Time Ago" content="1"/>
+    <meta name="if:Use HighRes Photos" content="1"/>
+    
+    <link href='https://fonts.googleapis.com/css?family={text:Google Font}:300,300italic,400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    
+    <style type="text/css">
+        
+        /* TYPE SCALE */
+        
+        body{
+            font-size: 100%;
+        }
+
+        body, caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, h4, h5, h6 {
+            font-size-adjust: 0.5;
+        }
+
+        #page {
+            font-size: 1em; /* equivalent to 16px */
+            line-height: 1.25; /* equivalent to 20px */
+        }
+            @media (min-width: 43.75em) {
+            #page {
+                font-size: 1em; /* equivalent to 16px */
+                line-height: 1.375; /* equivalent to 22px */
+            }
+        }
+
+        h1 {
+            font-size: 2em; /* 2x body copy size = 32px */
+            line-height: 1.25; /* 45px / 36px */
+        }
+            @media (min-width: 43.75em) {
+            h1 {
+                font-size: 2.5em; /* 2.5x body copy size = 40px */
+                line-height: 1.125;
+            }
+        }
+            @media (min-width: 56.25em) {
+            h1 {
+                font-size: 3em; /* 3x body copy size = 48px */
+                line-height: 1.05; /* keep to a multiple of the 20px line height and something more appropriate for display headings */
+            }
+        }
+
+        h2 {
+            font-size: 1.625em; /* 1.625x body copy size = 26px */
+            line-height: 1.15384615; /* 30px / 26px */
+        }
+            @media (min-width: 43.75em) {
+            h2 {
+                font-size: 2em; /* 2x body copy size = 32px */
+                line-height: 1.25;
+            }
+        }
+            @media (min-width: 56.25em) {
+            h2 {
+                font-size: 2.25em; /* 2.25x body copy size = 36px */
+                line-height: 1.25;
+            }
+        }
+
+        h3 {
+            font-size: 1.375em; /* 1.375x body copy size = 22px */
+            line-height: 1.13636364; /* 25px / 22px */
+        }
+            @media (min-width: 43.75em) {
+            h3 {
+                font-size: 1.5em; /* 1.5x body copy size = 24px */
+                line-height: 1.25;
+            }
+        }
+            @media (min-width: 56.25em) {
+            h3 {
+                font-size: 1.75em; /* 1.75x body copy size = 28px */
+                line-height: 1.25;
+            }
+        }
+
+        h4 {
+            font-size: 1.125em; /* 1.125x body copy size = 18px */
+            line-height: 1.11111111;
+        }
+            @media (min-width: 43.75em) {
+            h4 {
+                line-height: 1.22222222; /* (22px / 18px */
+            }
+        }
+
+        blockquote {
+            font-size: 1.25em; /* 20px / 16px */
+            line-height: 1.25; /* 25px / 20px */
+        }
+            @media (min-width: 43.75em) {
+            blockquote {
+                font-size: 1.5em; /* 24px / 16px = */
+                line-height: 1.45833333; /* 35px / 24px */
+            }
+        }
+        
+        /* END TYPE SCALE */
+    
+        body{
+            margin:0;
+            background:{color:Background};
+            
+            {block:IfBackgroundGradient}
+            background-image:linear-gradient(-45deg, {color:Gradient bottom}, {color:Gradient top});
+            {/block:IfBackgroundGradient}
+            
+            font-family:{font:Font};
+            
+            {block:IfUseGoogleFont}
+            font-family:{text:Google Font};
+            {/block:IfUseGoogleFont}
+            
+            font-size:1em;
+            font-weight:{select:Body font weight};
+            line-height:1.375em;
+            color:{color:Text};
+            
+            -webkit-font-smoothing:antialiased;
+            text-rendering:optimizeLegibility;
+        }
+        
+        a{
+            text-decoration:none;
+            color:{color:Link};
+        }
+        
+        a:hover, a:focus{
+            color:{color:Link hover}
+            outline:0;
+        }
+        
+        ul{
+            padding:0;
+        }
+        
+        figure{
+            margin:0 0 1em;
+        }
+        
+        img{
+            display:block;
+            max-width:100%;
+        }
+        
+        /* PAGE LAYOUT */
+        
+        #wrapper{
+            display:block;
+            margin:0 auto;
+            width:85%;
+            max-width:{text:Max page width};
+        }
+        
+        header{
+            display:block;
+            margin-top:3em;
+            color:{color:Header text};
+        }
+        header h1{
+            display:block;
+            font-weight:{select:Header font weight};
+            font-style:{select:Header font style};
+            margin-bottom:0em;
+            }
+        header h1 a{
+                    color:{color:Header title link}
+                }
+        
+        #description{
+            display:inline;
+            margin-top:1em;
+        }
+        
+        nav{
+            display:block;
+        }
+        nav ul{
+            display:inline;
+            list-style:none;
+        }
+        nav ul li{
+            display:inline;
+            padding-right:.4em;
+        }
+        nav ul li::last-child{
+            padding-right:0em;
+        }
+        nav ul li a{
+            color:{color:Header links};
+        }
+        
+        #main{
+            display:block;
+        }
+        #main .post{
+            display:block;
+            margin-top:4em;
+        }
+        #main .post::last-child{
+            margin-bottom:4em;
+        }
+        #main .post header{
+            display:inline;
+            margin-top:1em;
+        }
+        #main .post header h2{
+            display:inline;
+            font-weight:{select:Header font weight};
+            font-style:{select:Header font style};
+        }
+        #main .post p{
+            display:block;
+        }
+        #main .post blockquote{
+            margin:0 0 0 1em;
+            border-left:2px solid {color:Text};
+            padding-left:1em;
+            font-size:1em;
+            font-style:{select:Blockquote font style};
+        }
+        #main .post ul{
+            margin-left:2.5em;
+        }
+        #main .post .videowrapper{
+            float:none;
+            clear:both;
+            width:100%;
+            position:relative;
+            padding-bottom:50%;
+            padding-top:25px;
+            height:0;
+        }
+        #main .post .videowrapper iframe{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+        }
+        
+        footer .notes a{
+            display:block;
+            margin-top:1em;
+            color:{color:Date note tag text};
+        }
+        
+        ol.notes{
+            padding:0px;
+            margin-top:1em;
+            margin-bottom:4em;
+            list-stylye:none;
+        }
+        ol.notes li.note img.avatar{
+            display:none;
+            vertical-align:-4px;
+            margin-right:1em;
+            width:16px;
+            height:16px;
+        }
+        ol.notes li.note{
+            display:inline;
+            margin:0 auto;
+        }
+        ol.notes li.note a{
+            display:inline;
+            margin:0 auto;
+        }
+        ol.notes li.note span.action{
+            font-weight:{text:Body font weight};
+        }
+        ol.notes li.note .answer_content{
+            font-weight:400;
+        }
+        ol.notes li.note blockquote {
+            font-size:90%;
+            margin:0 0 0 1em;
+            border-left:2px solid {color:Text};
+            padding-left:1em;
+            font-style:italic;
+        }
+        ol.notes li.note blockquote a {
+            text-decoration: none;
+        }
+
+        footer ul{
+            display:block;
+            margin-top:1em;
+            list-style:none;
+            font-size:90%;
+        }
+        footer ul li{
+                display:inline;
+                margin-right:0.4em;
+            }
+        footer ul li::last-child{
+                margin-right:0;
+            }
+        footer ul li a{
+                    color:{color:Date Note Tag Text};
+                }
+    
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <header>
+            <h1><a href="/">{Title}</a></h1>
+
+            {block:Description}
+            <p id="description">{Description}</p>
+
+
+            {/block:Description}
+
+            <nav>
+                <ul>
+                    {block:HasPages}
+                    {block:Pages}
+                    <li><a href="{URL}">{Label}</a></li>
+                    {/block:Pages}
+                    {/block:HasPages}
+
+                    {block:AskEnabled}
+                    <li><a href="/ask">{AskLabel}</a></li>
+                    {/block:AskEnabled}
+
+                    {block:SubmissionsEnabled}
+                    <li><a href="/submit">{SubmitLabel}</a></li>
+                    {/block:SubmissionsEnabled}
+
+                    {block:IfShowArchive}
+                    <li><a href="/archive">{lang:Archive}</a></li>
+                    {/block:IfShowArchive}
+
+                    {block:IfShowRSS}
+                    <li><a href="{RSS}">RSS</a></li>
+                    {/block:IfShowRSS}
+                </ul>
+            </nav>
+
+        </header>
+
+        <div id="main" role="main">
+
+{block:DayPage}
+            <h3>{ShortYear}/{ShortMonth}/{DayOfMonth}</h3>
+            {/block:DayPage}
+
+            {block:TagPage}
+            <article class="tagpage"><h3>#{Tag}</h3></article>
+            {/block:TagPage}
+
+
+            {block:Posts}
+
+
+
+            {block:Text}
+            <article class="post text">
+
+                {block:Title}
+                <header>
+                    <h2>{Title}</h2>
+                </header>
+                {/block:Title}
+
+                <p>
+                    {Body}
+                </p>
+
+            </article>
+            {/block:Text}
+
+            {block:Photo}
+            <article class="post photo">
+
+                <figure>
+                    {LinkOpenTag}
+                    {block:IfUseHighResPhotos}
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                    {/block:IfUseHighResPhotos}
+
+                    {block:IfNotUseHighResPhotos}
+                    <img src="{PhotoURL-500}" alt="{PhotoAlt}" />
+                    {/block:IfNotUseHighResPhotos}
+                    {LinkCloseTag}
+
+                    {block:IfNotUseHighResPhotos}
+                    {block:HighRes}
+                    <a class="high-res" href="{PhotoURL-HighRes}">{text:HighRes Button}</a>
+                    {/block:HighRes}
+                    {/block:IfNotUseHighResPhotos}
+
+                    {block:Caption}
+                    <figcaption>
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+            </article>
+            {/block:Photo}
+
+            {block:Photoset}
+            <article class="post photoset">
+                <figure>
+
+                    {Photoset-700}
+
+                    {block:Caption}
+                    <figcaption>
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+            </article>
+            {/block:Photoset}
+
+            {block:Quote}
+            <article class="post quote">
+
+                <blockquote>
+                    {Quote}
+                </blockquote>
+
+                {block:Source}
+                <footer>
+                    — {Source}
+                </footer>
+                {/block:Source}
+            </article>
+            {/block:Quote}
+
+            {block:Link}
+            <article class="post link">
+
+                <header>
+                    <h2>
+                        <a href="{URL}" {Target}>{Name} ‣︎</a>
+                    </h2>
+                </header>
+
+                {block:Description}
+                <p>
+                    {Description}
+                </p>
+                {/block:Description}
+
+            </article>
+            {/block:Link}
+
+            {block:Chat}
+            <article class="post chat">
+
+                {block:Title}
+                <header>
+                    <h2>{Title}</h2>
+                </header>
+                {/block:Title}
+
+                <dialog>
+
+                    {block:Lines}
+                    {block:Label}
+                    <dt class="{Alt} {UserNumber}">
+                        {Label}
+                    </dt>
+                    {/block:Label}
+                    <dd>
+                        {Line}
+                    </dd>
+                    {/block:Lines}
+                </dialog>
+            </article>
+            {/block:Chat}
+
+            {block:Audio}
+            <article class="post audio">
+
+                <header>
+                    <h2>
+                        {block:Artist}
+                        {Artist}:
+                        {/block:Artist}
+
+                        {block:TrackName}
+                        "{TrackName}"
+                        {/block:TrackName}
+                    </h2>
+                </header>
+
+                <figure>
+                    {block:AlbumArt}
+                    <img src="{AlbumArtURL}" width="200"/>
+                    {/block:AlbumArt}
+
+                    {block:AudioPlayer}
+                    {AudioPlayer}
+                    {/block:AudioPlayer}
+
+                    {block:Caption}
+                    <figcaption>
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+
+            </article>
+            {/block:Audio}
+
+            {block:Video}
+            <article class="post video">
+
+                <figure>
+                    <div class="videowrapper">{Video-500}</div>
+                    {block:Caption}
+                    <figcaption>
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+
+            </article>
+            {/block:Video}
+
+            {block:Answer}
+            <article class="post answer">
+                <dialog>
+                    <dt>
+                        <img src="{AskerPortraitURL-16}"> {lang:Asker asked 2}:
+                    </dt>
+                    <dd>
+                        {Question}
+                    </dd>
+                    <dd>
+                        {Answer}
+                    </dd>
+                </dialog>
+            </article>
+            {/block:Answer}
+
+            <footer>
+                <ul>
+
+                {block:Date}
+            <li>
+                <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}T{24HourWithZero}:{Minutes}:{Seconds}">
+
+                    <a href="{Permalink}">
+
+                        {block:IfUseTimeAgo}
+                        {TimeAgo}
+                        {/block:IfUseTimeAgo}
+
+                        {block:IfNotUseTimeAgo}
+                        {DayOfMonth}/{MonthNumber}</li><li> {24Hour}:{Minutes}
+                        {/block:IfNotUseTimeAgo}
+
+                    </a>
+
+                </time>
+            </li>
+            {/block:Date}
+
+                {block:NoteCount}
+                <li>
+                    <a href="{Permalink}">{NoteCountWithLabel}</a>
+                </li>
+                {/block:NoteCount}
+
+                {block:HasTags}
+
+
+                    {block:Tags}
+                    <li>
+                        <a href="{TagURL}">#{Tag}</a>
+                    </li>
+                    {/block:Tags}
+
+                {/block:HasTags}
+</ul>
+                {block:PermalinkPage}
+                {block:PostNotes}
+                <div class="postnotes">
+                    <ul>
+                        {PostNotes}
+                    </ul>
+                </div>
+                {/block:PostNotes}
+                {/block:PermalinkPage}
+            </footer>
+
+            {/block:Posts}
+        </div>
+
+        <footer>
+
+            {block:PermalinkPagination}
+            <nav>
+                {block:PreviousPost}
+                <a href="{PreviousPost}">
+                    {lang:Previous}
+                </a>
+                {/block:PreviousPost}
+
+                {text:Separator}
+
+                {block:NextPost}
+                <a href="{NextPost}">
+                    {lang:Next}
+                </a>
+                {/block:NextPost}
+            </nav>
+            {/block:PermalinkPagination}
+
+            {block:IndexPage}
+            {block:Pagination}
+            <nav>
+                {block:PreviousPage}
+                <a href="{PreviousPage}">
+                    « {lang:Newer}
+                </a>
+                {/block:PreviousPage}
+
+                {block:IfUseNumberPagination}
+                {block:JumpPagination length="5"}
+                {block:CurrentPage}
+                <span>
+                    {PageNumber}
+                </span>
+                {/block:CurrentPage}
+                {block:JumpPage}
+                <a href="{URL}">
+                    {PageNumber}
+                </a>
+                {/block:JumpPage}
+                {/block:JumpPagination}
+                {/block:IfUseNumberPagination}
+
+                {block:NextPage}
+                <a href="{NextPage}">
+                    {lang:Older} »
+                </a>
+                {/block:NextPage}
+            </nav>
+            {/block:Pagination}
+            {/block:IndexPage}
+            <p>
+                {text:Footer Text}
+            </p>
+
+        </footer>
+
+    </div>
+
+    {block:IfGoogleAnalyticsID}
+    <script>
+      var _gaq=[['_setAccount','{text:Google Analytics ID}'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    {/block:IfGoogleAnalyticsID}
+
+</body>
+
+</html>
+
+
+</html>
