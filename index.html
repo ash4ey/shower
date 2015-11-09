@@ -144,13 +144,24 @@
         }
         
         /* END TYPE SCALE */
+        
+        html{
+            {block:IfBackgroundGradient}
+            
+            background-image:linear-gradient(-45deg, {color:Gradient bottom}, {color:Gradient top});
+            min-height:100%;
+            {/block:IfBackgroundGradient}
+        }
     
         body{
-            margin:0;
+            margin:0 auto;
+            
+            {block:IfNotBackgroundGradient}
             background:{color:Background};
+            {/block:IfNotBackgroundGradient}
             
             {block:IfBackgroundGradient}
-            background-image:linear-gradient(-45deg, {color:Gradient bottom}, {color:Gradient top});
+            background:none;
             {/block:IfBackgroundGradient}
             
             font-family:{font:Font};
